@@ -1,6 +1,4 @@
-DELETE  FROM waybills;
 ALTER SEQUENCE global_seq_points RESTART WITH 100000;
-
 DELETE FROM points;
 
 INSERT INTO points (name, coords) VALUES
