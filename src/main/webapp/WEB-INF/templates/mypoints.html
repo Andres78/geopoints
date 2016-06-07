@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Thymepoints</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Coords</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="points : ${points}">
+        <td>XXX</td>
+        <td th:text="${point.id}"></td>
+        <td th:text="${point.name}"></td>
+        <td th:text="${#numbers.formatDecimal(points.coords, 3, 5)}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+</html>

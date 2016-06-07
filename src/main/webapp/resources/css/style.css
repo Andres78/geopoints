@@ -1,0 +1,131 @@
+/*
+My color theme here: http://colorscheme.ru/#2P61Tw0llw0w0
+*/
+
+
+.normal {
+    color: green;
+}
+
+.exceeded {
+    color: red;
+}
+
+.header {
+    background-color: #31C431;
+    color: #005800;
+    border-color: #008800;
+}
+
+.footer {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #31C431;
+    color: #005800;
+    border-color: #008800;
+}
+
+.jumbotron {
+    padding-top: 70px;
+}
+
+.footer a:link, a:visited {
+    color: #134C4C;
+    text-align: center;
+    text-decoration: none;
+}
+
+.footer a:hover, a:active {
+    color: #6fff9e;
+    text-align: center;
+    text-decoration: none;
+}
+
+.error, .message {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.error {
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+}
+
+.message {
+    color: #2f9635;
+    background-color: #c6fbc2;
+    border: 1px solid #9feba6;
+}
+
+body {
+    background-color: #fff;
+}
+
+
+.floating-panel .mymaps{
+    /*position: absolute;*/
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #6ea574;
+    padding: 5px;
+    border: 1px solid #2a57ff;
+    text-align: center;
+    font-family: 'Roboto', 'sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.map .mymap {
+    height: 50%;
+    width: 50%;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #005800;
+}
+.header-linker a:link, a:visited {
+    color: #6FFF6F;
+    text-align: center;
+    text-decoration: none;
+}
+
+.header-linker a:hover, a:active {
+    color: #6fff9e;
+    text-align: center;
+    text-decoration: none;
+}
+
+.navbar-inverse {
+    background-color: #31C431;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #1A661A;
+    border-color: #008800;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #008800;
+    border-color: #1A661A;
+}
+
+.btn-add {
+    padding-bottom: 15px;
+    color: #fff;
+    background-color: #fff;
+    border-color: #1A661A;
+}
+
+.shadow {
+    color: #1A661A;
+}
+
+.table, .jumbotron  {
+    background-color: #ffffff;
+}
