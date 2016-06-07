@@ -17,10 +17,10 @@
 
 
 
-    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
+<!--    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
         <jdbc:script location="classpath:db/${jdbc.initLocation}"/>
         <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
-    </jdbc:initialize-database>
+    </jdbc:initialize-database>-->
 <!--    <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
@@ -34,22 +34,22 @@
             <!--<value>classpath:db/heroku.properties</value>-->
         <!--</property>-->
     <!--</bean>-->
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location">
-            <value>classpath:db/heroku.properties</value>
-        </property>
-    </bean>
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="location">-->
+            <!--<value>classpath:db/heroku.properties</value>-->
+        <!--</property>-->
+    <!--</bean>-->
 
-    <beans profile="postgres">
-        <context:property-placeholder location="classpath:db/postgres-local.properties" system-properties-mode="OVERRIDE"/>
+    <!--<beans profile="postgres">-->
+        <!--<context:property-placeholder location="classpath:db/postgres-local.properties" system-properties-mode="OVERRIDE"/>-->
 
-        <bean id="dataSource"
-              class="org.apache.tomcat.jdbc.pool.DataSource"
-              p:driverClassName="org.postgresql.Driver"
-              p:url="${database.url}"
-              p:username="${database.username}"
-              p:password="${database.password}"/>
-    </beans>
+        <!--<bean id="dataSource"-->
+              <!--class="org.apache.tomcat.jdbc.pool.DataSource"-->
+              <!--p:driverClassName="org.postgresql.Driver"-->
+              <!--p:url="${database.url}"-->
+              <!--p:username="${database.username}"-->
+              <!--p:password="${database.password}"/>-->
+    <!--</beans>-->
 
     <beans profile="heroku">
         <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
@@ -61,7 +61,7 @@
         </bean>
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"
-              p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
+              p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() + '?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory'}"
               p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
               p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
               p:driverClassName="org.postgresql.Driver"
