@@ -58,23 +58,12 @@
         <bean class="java.net.URI" id="dbUrl">
             <constructor-arg value="${DATABASE_URL}"/>
         </bean>
-        <!--<bean id="dataSource"-->
-        <!--class="org.apache.tomcat.jdbc.pool.DataSource"-->
-        <!--p:url="jdbc:postgresql://localhost:5432/"-->
-        <!--p:username="postgres"-->
-        <!--p:password="postgres"-->
-        <!--p:driverClassName="org.postgresql.Driver"-->
-        <!--p:maxActive="10"-->
-        <!--p:minIdle="2"-->
-        <!--p:maxWait="20000"-->
-        <!--p:initialSize="2"-->
-        <!--p:maxIdle="5"-->
-        <!--/>-->
+
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource">
             <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"></property>
-            <property name="username" value=" #{@dbUrl.getUserInfo().split(':')[0] }"></property>
-            <property name="password" value=" #{@dbUrl.getUserInfo().split(':')[1] }"></property>
+            <property name="username" value="#{@dbUrl.getUserInfo().split(':')[0]}"></property>
+            <property name="password" value="#{@dbUrl.getUserInfo().split(':')[1]}"></property>
             <property name="driverClassName" value="org.postgresql.Driver"></property>
             <property name="validationQuery" value=" SELECT 1 FROM points"></property>
             <property name="maxActive" value=" 10"></property>
