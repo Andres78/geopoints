@@ -40,30 +40,31 @@
               p:password="${database.password}"/>
     </beans>
 
+
+
+
     <beans profile="heroku">
         <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
 
         <bean class="java.net.URI" id="dbUrl">
             <constructor-arg value="${DATABASE_URL}"/>
         </bean>
-
         <bean id="dataSource"
-              class="org.apache.tomcat.jdbc.pool.DataSource">
-            <property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"></property>
-            <property name="username" value="#{@dbUrl.getUserInfo().split(':')[0]}"></property>
-            <property name="password" value="#{@dbUrl.getUserInfo().split(':')[1]}"></property>
-            <property name="driverClassName" value="org.postgresql.Driver"></property>
-            <property name="validationQuery" value=" SELECT 1 FROM points"></property>
-            <property name="maxActive" value=" 10"></property>
-            <property name="minIdle" value=" 2"></property>
-            <property name="maxWait" value=" 20000"></property>
-            <property name="initialSize" value="2"></property>
-            <property name="maxIdle" value=" 5"></property>
-            <property name="testOnBorrow" value="true"></property>
-            <property name="removeAbandoned" value="true"></property>
-            <property name="testOnConnect" value="true"></property>
-            <property name="testWhileIdle" value="true"></property>
-        </bean>
+              class="org.apache.tomcat.jdbc.pool.DataSource"
+              p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
+              p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
+              p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
+              p:driverClassName="org.postgresql.Driver"
+              p:validationQuery="SELECT 1 FROM users"
+              p:maxActive="10"
+              p:minIdle="2"
+              p:maxWait="20000"
+              p:initialSize="2"
+              p:maxIdle="5"
+              p:testOnBorrow="true"
+              p:removeAbandoned="true"
+              p:testOnConnect="true"
+              p:testWhileIdle="true"/>
     </beans>
 
 
