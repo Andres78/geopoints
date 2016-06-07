@@ -65,7 +65,7 @@
               p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
               p:connectionProperties="ssl=true;sslfactory=org.postgresql.ssl.NonValidatingFactory"
               p:driverClassName="org.postgresql.Driver"
-              p:validationQuery="SELECT 1 FROM users"
+              p:validationQuery="SELECT 1 FROM points"
               p:maxActive="10"
               p:minIdle="2"
               p:maxWait="20000"
