@@ -25,13 +25,13 @@
         <jdbc:script location="classpath:db/${jdbc.initLocation}"/>
         <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
     </jdbc:initialize-database>
-    <bean id="dataSource"
+<!--    <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
         <property name="username" value="${database.username}"/>
         <property name="password" value="${database.password}"/>
-    </bean>
+    </bean>-->
 
     <beans profile="heroku">
         <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
