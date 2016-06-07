@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- The contents of this file will be loaded for each web application -->
+<!--
 <Context>
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
@@ -16,5 +17,8 @@
               password="postgres"
               driverClassName="org.postgresql.Driver"
               url="jdbc:postgresql://localhost:5432/mygeopoints"/>
-    <!--  * * *  WRITE EXTERNAL DB CONFIG HERE !!! * * * -->
 </Context>
+-->
+
+
+        <!--  * * *  WRITE EXTERNAL DB CONFIG HERE !!! * * * -->
