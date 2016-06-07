@@ -60,9 +60,10 @@
         </bean>
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"
-              p:url="#{'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() + '?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory'}"
+              p:url="#{'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath()}"
               p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
               p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
+              p:connectionProperties="ssl=true;sslfactory=org.postgresql.ssl.NonValidatingFactory"
               p:driverClassName="org.postgresql.Driver"
               p:validationQuery="SELECT 1 FROM users"
               p:maxActive="10"
@@ -75,10 +76,6 @@
               p:testOnConnect="true"
               p:testWhileIdle="true"/>
     </beans>
-
-    <!--p:connectionProperties="ssl=true;sslfactory=org.postgresql.ssl.NonValidatingFactory"-->
-
-
     <!--p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() + '?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory'}"-->
 
 
