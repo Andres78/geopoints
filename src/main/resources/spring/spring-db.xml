@@ -29,6 +29,28 @@
         <property name="password" value="${database.password}"/>
     </bean>-->
 
+    <!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="location">-->
+            <!--<value>classpath:db/heroku.properties</value>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:db/heroku.properties</value>
+        </property>
+    </bean>
+
+    <beans profile="postgres">
+        <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
+
+        <bean id="dataSource"
+              class="org.apache.tomcat.jdbc.pool.DataSource"
+              p:driverClassName="org.postgresql.Driver"
+              p:url="${database.url}"
+              p:username="${database.username}"
+              p:password="${database.password}"/>
+    </beans>
+
     <beans profile="heroku">
         <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
 
@@ -37,20 +59,16 @@
         </bean>
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"
-              p:url="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + @dbUrl.getPath() }"
-              p:username="#{ @dbUrl.getUserInfo().split(':')[0] }"
-              p:password="#{ @dbUrl.getUserInfo().split(':')[1] }"
+              p:url="jdbc:postgresql://localhost:5432/"
+              p:username="postgres"
+              p:password="postgres"
               p:driverClassName="org.postgresql.Driver"
-              p:validationQuery="SELECT 1 FROM points"
               p:maxActive="10"
               p:minIdle="2"
               p:maxWait="20000"
               p:initialSize="2"
               p:maxIdle="5"
-              p:testOnBorrow="true"
-              p:removeAbandoned="true"
-              p:testOnConnect="true"
-              p:testWhileIdle="true"/>
+/>
     </beans>
 
 
@@ -63,13 +81,13 @@
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
                     <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
                            value="${hibernate.use_sql_comments}"/>
-                    <entry key="#{T(org.hibernate.cfg.AvailableSettings).SHOW_SQL}" value="${jpa.showSql}"/>
-                    <entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl}"/>
-                    <entry key="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
-                    <entry key="javax.persistence.schema-generation.scripts.create-target"
-                           value="${GEO_ROOT}/config/ddl/create.ddl"/>
-                    <entry key="javax.persistence.schema-generation.scripts.drop-target"
-                           value="${GEO_ROOT}/config/ddl/drop.ddl"/>
+                    <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).SHOW_SQL}" value="${jpa.showSql}"/>-->
+                    <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl}"/>-->
+                    <!--<entry key="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>-->
+                    <!--<entry key="javax.persistence.schema-generation.scripts.create-target"-->
+                           <!--value="${GEO_ROOT}/config/ddl/create.ddl"/>-->
+                    <!--<entry key="javax.persistence.schema-generation.scripts.drop-target"-->
+                           <!--value="${GEO_ROOT}/config/ddl/drop.ddl"/>-->
                 </map>
             </property>
             <property name="jpaVendorAdapter">
@@ -81,9 +99,10 @@
         <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
         <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
               p:entityManagerFactory-ref="entityManagerFactory"/>
-        <context:component-scan base-package="es.ahs.mygeopoints.**.repository.jpa"/>
+
 
     </beans>
+    <context:component-scan base-package="es.ahs.**.repository.jpa"/>
 
 
 
