@@ -93,7 +93,7 @@
                     <contextFile>src/main/resources/tomcat/context.xml</contextFile>
                     <server>TomcatServer</server>
                     <protocol>org.apache.coyote.http11.Http11NioProtocol</protocol>
-                    <path>/mygeopoints</path>
+                    <!--<path>/mygeopoints</path>-->
                 </configuration>
                 <dependencies>
                     <dependency>
