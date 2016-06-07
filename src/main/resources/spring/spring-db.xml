@@ -41,7 +41,7 @@
     </bean>
 
     <beans profile="postgres">
-        <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>
+        <context:property-placeholder location="classpath:db/postgres-local.properties" system-properties-mode="OVERRIDE"/>
 
         <bean id="dataSource"
               class="org.apache.tomcat.jdbc.pool.DataSource"
@@ -52,7 +52,7 @@
     </beans>
 
     <beans profile="heroku">
-        <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
+        <context:property-placeholder location="classpath:db/heroku.properties" system-properties-mode="OVERRIDE"/>
 
         <bean class="java.net.URI" id="dbUrl">
             <constructor-arg value="${DATABASE_URL}"/>
@@ -99,10 +99,10 @@
         <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
         <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
               p:entityManagerFactory-ref="entityManagerFactory"/>
+        <context:component-scan base-package="es.ahs.**.repository.jpa"/>
 
 
     </beans>
-    <context:component-scan base-package="es.ahs.**.repository.jpa"/>
 
 
 
