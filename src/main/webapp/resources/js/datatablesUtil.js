@@ -1,4 +1,5 @@
 var form;
+var pointsArr = [];
 
 function updateTableByData(data) {
     datatableApi.clear().rows.add(data).draw();
@@ -46,6 +47,7 @@ function failNoty(event, jqXHR, options, jsExc) {
 
 function renderPointName(date, type, row) {
     if (type == 'display') {
+        pointsArr.push({name:row.name, coords:row.coords});
         return '<a class="btn btn-xs btn-info" href="showPoint?id=' + row.id + '">' + row.name + '</a>';
     }
 }

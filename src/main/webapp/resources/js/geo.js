@@ -1,30 +1,59 @@
 var geocoder;
 var infowindow;
 var map;
+var latlngbounds;
 
 function initMap() {
+    console.info("initMap");
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
         center: {lat: 59.934280, lng: 30.3350986}
     });
     geocoder = new google.maps.Geocoder;
     infowindow = new google.maps.InfoWindow;
+    latlngbounds = new google.maps.LatLngBounds();
+
+    // drawPoints();
 }
 
-
-function setMarkers(map, locations) {
-    var latlngbounds = new google.maps.LatLngBounds();
-    for (var i = 0; i < locations.length; i++) {
-        var myLatLng = locations[i][1];
-        latlngbounds.extend(myLatLng);
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: locations[i][0]
-        });
+window.onload = function() {
+    var drawer = function(){
+        drawPoints();
     }
-    map.setCenter( latlngbounds.getCenter(), map.fitBounds(latlngbounds));
+    drawer();
 };
+
+function setMarker(mapka, name, loc) {
+    // console.info("setMarker: " + name);
+    if (!mapka) return;
+    var myLatLng = parseToLatLng(loc);
+    latlngbounds.extend(myLatLng);
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        title: name,
+        map: map
+    });
+    console.info("setMarkeR: " + name);
+
+    infowindow.open(map, marker);
+};
+
+function drawPoints() {
+    // console.info("drawPoints, points = " + pointsArr.length);
+    var geoI = 0;
+    for (geoI = 0; geoI < pointsArr.length; geoI++) {
+        // console.info("drawPoints i = " + geoI);
+
+        var marker = new google.maps.Marker({
+            position: parseToLatLng(pointsArr[geoI].coords),
+            map: map,
+            title: pointsArr[geoI].name
+        });
+        var addr = pointsArr[geoI].name;
+        infowindow.setContent(addr);
+        infowindow.open(map, marker);
+    }
+}
 
 
 function parseToLatLng(str) {

@@ -22,8 +22,12 @@
 
                 <div class="shadow">
                     <h3><fmt:message key="app.title"/></h3>
-                    <div>
+                    <div id="knopovka">
                         <a class="btn btn-primary" role="button" href="geopoints"><fmt:message key="app.back"/></a>
+                    </div>
+                    <div id="pointka">
+
+
                     </div>
                 </div>
             </div>
@@ -42,6 +46,15 @@
 </div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
+<script language="javascript" type="text/javascript">
+    function txt() {
+        document.getElementsById('pointka').innerHTML = "Hello!"
+        console.info("loaded");
+    };
+    window.onload = txt;
+
+
+</script>
 <script type="text/javascript" src="webjars/jquery/2.2.3/jquery.min.js"></script>
 <script type="text/javascript" src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="webjars/datatables/1.10.11/js/jquery.dataTables.min.js"></script>
